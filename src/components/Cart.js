@@ -1,11 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import {connect} from 'react-redux'
-import {switchPage} from '../actions/PageSwitchAction'
-import {changeItems, changeTotal} from '../actions/TableActions'
-
-export class Table extends React.Component{
+export class Cart extends React.Component{
     onPlusClick = e => {
         const newItems = this.props.items.map(i =>{
             if(+i.id === +e.currentTarget.value){
@@ -145,32 +141,10 @@ export class Table extends React.Component{
     }
 }
 
-Table.propTypes = {
+Cart.propTypes = {
     page: PropTypes.string.isRequired,
     items: PropTypes.array.isRequired,
     changeItems: PropTypes.func.isRequired,
     total: PropTypes.number.isRequired,
     changeTotal: PropTypes.func.isRequired,
 }
-
-const mapStateToProps = store => {
-    console.log(store)
-    return {
-      page: store.pageSwitch,
-      items: store.goodsStore,
-      total: store.goodsStore.total,
-    }
-  }
-  
-  const mapDispatchToProps = dispatch => {
-    return{
-      switchPageAction: page => dispatch(switchPage(page)),
-      changeItemsAction: items => dispatch(changeItems(items)),
-      changeTotal: total => dispatch(changeTotal(total)), 
-    }
-  }
-  
-  export default connect(
-    mapStateToProps,
-    mapDispatchToProps,
-  )(Table)

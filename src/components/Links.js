@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { Link  } from "react-router-dom";
 
 export class Links extends React.Component{
     onSwitchPageClick = e => {
@@ -32,13 +33,13 @@ export class Links extends React.Component{
         if(page === 'index'){
         return(
             <div>
-                <button className="btn btn-primary" onClick={this.onSwitchPageClick} value='cart'>В корзину</button>
+                <Link to="/Cart"><button className="btn btn-primary" onClick={this.onSwitchPageClick} value='cart'>В корзину</button></Link>
             </div>
         )
         } else if(page === 'cart'){
             return(
                 <div className="linksButton">
-                   <button className="btn btn-primary" onClick={this.onSwitchPageClick} value='index'>Перейти к списку товаров</button> &nbsp;  
+                   <Link to="/"><button className="btn btn-primary" onClick={this.onSwitchPageClick} value='index'>Перейти к списку товаров</button> </Link> &nbsp;  
                    <button className="btn btn-primary" onClick={this.onClearCart}>Очистить корзину</button>
                 </div>
             )
